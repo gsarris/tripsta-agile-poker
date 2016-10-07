@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "790313607392",
+    "firebase_url": "https://tripsta-poker.firebaseio.com",
+    "project_id": "tripsta-poker",
+    "storage_bucket": "tripsta-poker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790313607392:android:6df2a08608d216f5",
+        "android_client_info": {
+          "package_name": "com.tripsta.tripstapoker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790313607392-t86jup8rsou0hfru7h0roo6l4b1uvu7j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tripsta.tripstapoker",
+            "certificate_hash": "F287A1B31747A7FD714066EB531A2F06EB95EDB0"
+          }
+        },
+        {
+          "client_id": "790313607392-r9jiqsbmcem199injmhu79q11nrqaojb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMa4604wGUAsuOHjFoFKbp0enLJ4ICyFw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790313607392-r9jiqsbmcem199injmhu79q11nrqaojb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
