@@ -1,7 +1,6 @@
-package com.tripsta.tripstapoker;
+package com.tripsta.tripstapoker.card;
 
 import android.animation.Animator;
-import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
@@ -30,70 +29,69 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.tripsta.models.Card;
+import com.tripsta.tripstapoker.R;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.codetail.animation.ViewAnimationUtils;
 import io.fabric.sdk.android.Fabric;
 
-public class MainActivity extends AppCompatActivity
-		implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
+public class CardActivity extends AppCompatActivity
+		implements CardContract.View, NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
 	public static final int SPAN_COUNT = 4;
 	public static final int OPEN_ANIMATION_DURATION = 500;
 	public static final int CLOSE_ANIMATION_DURATION = 400;
 	public static final int VIBRATION_TRIGGER = 25;
 	public static final int NO_OF_ROWS = 18;
-	private static List<Card> cards = new ArrayList<>();
 
-	static {
-		cards.add(new Card(0, R.color.color_3F8CCB));
-		cards.add(new Card(-1, R.color.color_8CC54B));
-		cards.add(new Card(1, R.color.color_77B333));
-		cards.add(new Card(2, R.color.color_5E971E));
-		cards.add(new Card(3, R.color.color_CDE340));
-		cards.add(new Card(5, R.color.color_BFD533));
-		cards.add(new Card(8, R.color.color_BBD70B));
-		cards.add(new Card(13, R.color.color_C8E40B));
-		cards.add(new Card(21, R.color.color_D78240));
-		cards.add(new Card(34, R.color.color_CE7026));
-		cards.add(new Card(50, R.color.color_D57122));
-		cards.add(new Card(80, R.color.color_EA7316));
-		cards.add(new Card(130, R.color.color_D7735B));
-		cards.add(new Card(210, R.color.color_D76448));
-		cards.add(new Card(500, R.color.color_D55435));
-		cards.add(new Card(800, R.color.color_C62D08));
-	}
-
+	@BindView(R.id.nav_view)
+	NavigationView navigationView;
+	@BindView(R.id.visibleView)
+	RelativeLayout visibleView;
+	@BindView(R.id.linearView)
+	LinearLayout revealView;
+	@BindView(R.id.layoutButtons)
+	LinearLayout layoutButtons;
+	@BindView(R.id.cardList)
+	RecyclerView cardList;
+	@BindView(R.id.textToShow)
+	TextView textToShow;
+	@BindView(R.id.imageToShow)
+	ImageView imageToShow;
 	boolean flag = true;
 	int x;
 	int y;
 	int hypotenuse;
+	private CardContract.Presenter cardPresenter;
 	private AppCompatActivity appCompatActivity = this;
 	private Animation alphaAnimation;
-	private NavigationView navigationView;
-	private RelativeLayout visibleView;
-	private LinearLayout revealView;
-	private LinearLayout layoutButtons;
-	private RecyclerView cardList;
-	private TextView textToShow;
-	private ImageView imageToShow;
 	private GridLayoutManager gridLayoutManager;
 	private SensorManager sensorManager;
 	private float acceleration;
 	private float currentAcceleration;
 	private float lastAcceleration;
+	private FirebaseAnalytics mFirebaseAnalytics;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Fabric.with(this, new Crashlytics());
+		// Obtain the FirebaseAnalytics instance.
+		mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 		setContentView(R.layout.activity_main);
-		initializeViews();
-		initializeGrid();
+		ButterKnife.bind(this);
 		initializeListeners();
+		cardPresenter = CardPresenter.newInstance(this);
+		cardPresenter.start();
+		Bundle bundle = new Bundle();
+		bundle.putString("Screen", this.getLocalClassName());
+		mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, bundle);
 	}
 
 	private void initializeListeners() {
@@ -102,24 +100,29 @@ public class MainActivity extends AppCompatActivity
 		navigationView.setNavigationItemSelectedListener(this);
 	}
 
-	private void initializeGrid() {
+	@Override
+	public void initializeGrid(List<Card> cards) {
 		gridLayoutManager = new GridLayoutManager(this, SPAN_COUNT);
 		cardList.setLayoutManager(gridLayoutManager);
 		CardListAdapter cardListAdapter = new CardListAdapter(this, cards);
 		cardList.setAdapter(cardListAdapter);
-		cardList.addItemDecoration(new GridSpacingItemDecoration(SPAN_COUNT, 0, false));
+		cardList.addItemDecoration(new GridDecoration(SPAN_COUNT, 0, false));
 	}
 
-	private void initializeViews() {
-		visibleView = (RelativeLayout) findViewById(R.id.visibleView);
-		revealView = (LinearLayout) findViewById(R.id.linearView);
-		layoutButtons = (LinearLayout) findViewById(R.id.layoutButtons);
-		textToShow = (TextView) findViewById(R.id.textToShow);
-		imageToShow = (ImageView) findViewById(R.id.imageToShow);
-		cardList = (RecyclerView) findViewById(R.id.cardList);
-		navigationView = (NavigationView) findViewById(R.id.nav_view);
+	@Override
+	public void animateCard(int id) {
+		View view = findViewById(id);
+		try {
+			if (flag) {
+				animateOpen(view);
+			} else {
+				animateClose();
+			}
+			flag = !flag;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-
 
 	@Override
 	protected void onResume() {
@@ -134,16 +137,7 @@ public class MainActivity extends AppCompatActivity
 	}
 
 	public void animate(View view) {
-		try {
-			if (flag) {
-				animateOpen(view);
-			} else {
-				animateClose();
-			}
-			flag = !flag;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		cardPresenter.showCard(view.getId());
 	}
 
 	private void animateOpen(View view) {
@@ -318,38 +312,4 @@ public class MainActivity extends AppCompatActivity
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 	}
 
-	public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
-
-		private int spanCount;
-		private int spacing;
-		private boolean includeEdge;
-
-		public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
-			this.spanCount = spanCount;
-			this.spacing = spacing;
-			this.includeEdge = includeEdge;
-		}
-
-		@Override
-		public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-			int position = parent.getChildAdapterPosition(view); // item position
-			int column = position % spanCount; // item column
-
-			if (includeEdge) {
-				outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
-				outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
-
-				if (position < spanCount) { // top edge
-					outRect.top = spacing;
-				}
-				outRect.bottom = spacing; // item bottom
-			} else {
-				outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
-				outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
-				if (position >= spanCount) {
-					outRect.top = spacing; // item top
-				}
-			}
-		}
-	}
 }
