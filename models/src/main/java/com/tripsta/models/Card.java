@@ -1,4 +1,4 @@
-package com.tripsta.tripstapoker;
+package com.tripsta.models;
 
 /**
  * Created by georgiossarris on 15/07/16.
