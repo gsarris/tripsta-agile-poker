@@ -1,4 +1,4 @@
-package com.tripsta.tripstapoker;
+package com.tripsta.tripstapoker.card;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -8,7 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.tripsta.models.Card;
+import com.tripsta.tripstapoker.R;
+
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by georgiossarris on 15/07/16.
@@ -39,6 +45,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.Recycl
 		if (number == -1) {
 			stringedNumber = "1/2";
 		}
+		holder.textView.setId(number);
 		holder.textView.setText(stringedNumber);
 		holder.textView.setBackgroundColor(ContextCompat.getColor(context, cards.get(position).getColorHex()));
 	}
@@ -50,11 +57,12 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.Recycl
 
 	class RecyclerViewHolders extends RecyclerView.ViewHolder {
 
+		@BindView(R.id.textView)
 		TextView textView;
 
 		RecyclerViewHolders(View itemView) {
 			super(itemView);
-			textView = (TextView) itemView.findViewById(R.id.textView);
+			ButterKnife.bind(this, itemView);
 		}
 	}
 
