@@ -15,11 +15,19 @@
       },
       "oauth_client": [
         {
+          "client_id": "790313607392-6tin94aa3bvrd76v3c4mhqn0kvde550s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tripsta.tripstapoker",
+            "certificate_hash": "1ddecd564a42119fe7526515e5108d453bc281ce"
+          }
+        },
+        {
           "client_id": "790313607392-t86jup8rsou0hfru7h0roo6l4b1uvu7j.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.tripsta.tripstapoker",
-            "certificate_hash": "F287A1B31747A7FD714066EB531A2F06EB95EDB0"
+            "certificate_hash": "f287a1b31747a7fd714066eb531a2f06eb95edb0"
           }
         },
         {
