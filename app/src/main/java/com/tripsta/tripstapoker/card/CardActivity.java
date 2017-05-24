@@ -36,6 +36,8 @@ import com.tripsta.tripstapoker.R;
 import java.util.List;
 import java.util.Random;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.codetail.animation.ViewAnimationUtils;
@@ -68,7 +70,8 @@ public class CardActivity extends AppCompatActivity
 	int x;
 	int y;
 	int hypotenuse;
-	private CardContract.Presenter cardPresenter;
+	@Inject
+	CardPresenter cardPresenter;
 	private AppCompatActivity appCompatActivity = this;
 	private Animation alphaAnimation;
 	private GridLayoutManager gridLayoutManager;
@@ -87,7 +90,7 @@ public class CardActivity extends AppCompatActivity
 		setContentView(R.layout.activity_main);
 		ButterKnife.bind(this);
 		initializeListeners();
-		cardPresenter = CardPresenter.newInstance(this);
+		DaggerCardComponent.builder().cardPresenterModule(new CardPresenterModule(this)).build().inject(this);
 		cardPresenter.start();
 		Bundle bundle = new Bundle();
 		bundle.putString("Screen", this.getLocalClassName());

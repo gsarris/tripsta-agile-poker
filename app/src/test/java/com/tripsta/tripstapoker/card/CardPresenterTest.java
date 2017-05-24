@@ -1,18 +1,10 @@
 package com.tripsta.tripstapoker.card;
 
-import com.google.common.collect.Lists;
-import com.tripsta.models.Card;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by georgiossarris on 5/5/17.
@@ -27,7 +19,7 @@ public class CardPresenterTest {
 	@Before
 	public void setup(){
 		MockitoAnnotations.initMocks(this);
-		cardPresenter = (CardPresenter) CardPresenter.newInstance(cardView);
+		cardPresenter = new CardPresenter(cardView);
 	}
 
 	@Test

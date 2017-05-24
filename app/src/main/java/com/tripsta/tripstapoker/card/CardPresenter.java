@@ -6,6 +6,8 @@ import com.tripsta.tripstapoker.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by georgiossarris on 5/5/17.
  */
@@ -35,12 +37,9 @@ public class CardPresenter implements CardContract.Presenter {
 
 	private CardContract.View cardView;
 
-	private CardPresenter(CardContract.View view) {
+	@Inject
+	CardPresenter(CardContract.View view) {
 		cardView = view;
-	}
-
-	public static CardContract.Presenter newInstance(CardContract.View view) {
-		return new CardPresenter(view);
 	}
 
 	@Override
