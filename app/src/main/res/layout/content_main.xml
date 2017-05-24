@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/content_main"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="com.tripsta.tripstapoker.MainActivity"
+	tools:context="com.tripsta.tripstapoker.card.CardActivity"
 	tools:showIn="@layout/app_bar_main">
 
 	<io.codetail.widget.RevealFrameLayout
@@ -24,19 +23,22 @@
 			android:layout_gravity="center"
 			android:gravity="center"
 			android:orientation="vertical">
+
 			<android.support.v7.widget.RecyclerView
 				android:id="@+id/cardList"
 				android:layout_width="match_parent"
-				android:layout_marginBottom="115dp"
-				android:layout_height="match_parent">
+				android:layout_height="match_parent"
+				android:layout_marginBottom="115dp">
 
 			</android.support.v7.widget.RecyclerView>
+
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_alignParentBottom="true"
 				android:baselineAligned="false"
 				android:orientation="horizontal">
+
 				<LinearLayout
 					android:id="@+id/coffee"
 					android:layout_width="0dp"
@@ -48,11 +50,13 @@
 					android:gravity="center"
 					android:onClick="animate"
 					android:orientation="horizontal">
+
 					<ImageView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:src="@drawable/coffee"/>
+						android:src="@drawable/coffee" />
 				</LinearLayout>
+
 				<LinearLayout
 					android:id="@+id/skull"
 					android:layout_width="0dp"
@@ -64,13 +68,15 @@
 					android:gravity="center"
 					android:onClick="animate"
 					android:orientation="horizontal">
+
 					<ImageView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:src="@drawable/skull"/>
+						android:src="@drawable/skull" />
 				</LinearLayout>
 			</LinearLayout>
 		</RelativeLayout>
+
 		<LinearLayout
 			android:id="@+id/linearView"
 			android:layout_width="match_parent"
@@ -81,6 +87,7 @@
 			android:onClick="animate"
 			android:orientation="horizontal"
 			android:visibility="gone">
+
 			<LinearLayout
 				android:id="@+id/layoutButtons"
 				android:layout_width="match_parent"
@@ -89,6 +96,7 @@
 				android:gravity="center"
 				android:orientation="horizontal"
 				android:visibility="gone">
+
 				<TextView
 					android:id="@+id/textToShow"
 					android:layout_width="wrap_content"
@@ -102,12 +110,13 @@
 					android:text="1"
 					android:textColor="@android:color/white"
 					android:textSize="100dp"
-					android:textStyle="bold"/>
+					android:textStyle="bold" />
+
 				<ImageView
 					android:id="@+id/imageToShow"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:src="@drawable/coffee"/>
+					android:src="@drawable/coffee" />
 			</LinearLayout>
 		</LinearLayout>
 	</io.codetail.widget.RevealFrameLayout>
