@@ -48,7 +48,7 @@ public class CardPresenter implements CardContract.Presenter {
 	}
 
 	@Override
-	public void showCard(int id) {
-		cardView.animateCard(id);
+	public void showCard(Object tag) {
+		cardView.animateCard(tag);
 	}
 }

@@ -49,6 +49,7 @@
 					android:foreground="?android:selectableItemBackground"
 					android:gravity="center"
 					android:onClick="animate"
+					android:tag="coffee"
 					android:orientation="horizontal">
 
 					<ImageView
@@ -67,6 +68,7 @@
 					android:foreground="?android:selectableItemBackground"
 					android:gravity="center"
 					android:onClick="animate"
+					android:tag="skull"
 					android:orientation="horizontal">
 
 					<ImageView
@@ -85,6 +87,7 @@
 			android:background="@android:color/holo_blue_dark"
 			android:gravity="center"
 			android:onClick="animate"
+			android:tag="linearView"
 			android:orientation="horizontal"
 			android:visibility="gone">
 
@@ -103,6 +106,7 @@
 					android:layout_height="wrap_content"
 					android:elevation="5dp"
 					android:onClick="animate"
+					android:tag="textToShow"
 					android:shadowColor="@android:color/black"
 					android:shadowDx="3"
 					android:shadowDy="3"
