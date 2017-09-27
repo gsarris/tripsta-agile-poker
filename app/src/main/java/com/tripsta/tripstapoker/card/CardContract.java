@@ -15,10 +15,10 @@ public interface CardContract {
 	interface View extends BaseView<Presenter> {
 		void initializeGrid(List<Card> cards);
 
-		void animateCard(int id);
+		void animateCard(Object tag);
 	}
 
 	interface Presenter extends BasePresenter {
-		void showCard(int id);
+		void showCard(Object tag);
 	}
 }

@@ -113,8 +113,8 @@ public class CardActivity extends AppCompatActivity
 	}
 
 	@Override
-	public void animateCard(int id) {
-		View view = findViewById(id);
+	public void animateCard(Object tag) {
+		View view = visibleView.findViewWithTag(tag);
 		try {
 			if (flag) {
 				animateOpen(view);
@@ -140,7 +140,7 @@ public class CardActivity extends AppCompatActivity
 	}
 
 	public void animate(View view) {
-		cardPresenter.showCard(view.getId());
+		cardPresenter.showCard(view.getTag());
 	}
 
 	private void animateOpen(View view) {
