@@ -45,7 +45,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.Recycl
 		if (number == -1) {
 			stringedNumber = "1/2";
 		}
-		holder.textView.setId(number);
+		holder.textView.setTag(number);
 		holder.textView.setText(stringedNumber);
 		holder.textView.setBackgroundColor(ContextCompat.getColor(context, cards.get(position).getColorHex()));
 	}
