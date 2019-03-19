@@ -15,7 +15,7 @@
  */
 
 package com.tripsta.tripstapoker;
-
+/* */
 public interface BasePresenter {
 
 	void start();
