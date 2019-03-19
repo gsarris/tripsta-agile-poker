@@ -210,6 +210,7 @@ public class CardActivity extends AppCompatActivity
 			public void onAnimationRepeat(Animator animator) {
 
 			}
+
 		});
 		revealView.setVisibility(View.VISIBLE);
 		anim.start();
