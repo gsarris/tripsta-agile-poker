@@ -9,13 +9,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -28,8 +21,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.crashlytics.android.Crashlytics;
-import com.google.firebase.analytics.FirebaseAnalytics;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.navigation.NavigationView;
 import com.tripsta.models.Card;
 import com.tripsta.tripstapoker.R;
 
@@ -41,7 +41,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.codetail.animation.ViewAnimationUtils;
-import io.fabric.sdk.android.Fabric;
 
 public class CardActivity extends AppCompatActivity
 		implements CardContract.View, NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
@@ -79,14 +78,11 @@ public class CardActivity extends AppCompatActivity
 	private float acceleration;
 	private float currentAcceleration;
 	private float lastAcceleration;
-	private FirebaseAnalytics mFirebaseAnalytics;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Fabric.with(this, new Crashlytics());
 		// Obtain the FirebaseAnalytics instance.
-		mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 		setContentView(R.layout.activity_main);
 		ButterKnife.bind(this);
 		initializeListeners();
@@ -94,7 +90,6 @@ public class CardActivity extends AppCompatActivity
 		cardPresenter.start();
 		Bundle bundle = new Bundle();
 		bundle.putString("Screen", this.getLocalClassName());
-		mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, bundle);
 	}
 
 	private void initializeListeners() {
