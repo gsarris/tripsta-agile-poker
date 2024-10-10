@@ -1,4 +1,4 @@
-package com.tripsta.models;
+package com.sarris.models;
 
 /**
  * Created by georgiossarris on 15/07/16.

@@ -1,4 +1,4 @@
-# tripsta-agile-poker
+# agile-poker
 
 An android app for Agile Poker
 

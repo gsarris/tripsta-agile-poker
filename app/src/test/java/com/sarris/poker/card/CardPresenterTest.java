@@ -1,4 +1,4 @@
-package com.tripsta.tripstapoker.card;
+package com.sarris.poker.card;
 
 import org.junit.Before;
 import org.junit.Test;

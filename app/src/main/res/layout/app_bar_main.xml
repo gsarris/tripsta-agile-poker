@@ -5,7 +5,7 @@
 	android:layout_height="match_parent"
 	android:background="@android:color/black"
 	android:fitsSystemWindows="true"
-	tools:context="com.tripsta.tripstapoker.card.CardActivity">
+	tools:context="com.sarris.poker.card.CardActivity">
 
 	<include layout="@layout/content_main" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

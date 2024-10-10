@@ -5,12 +5,12 @@ repositories {
 }
 
 android {
-    namespace = "com.tripsta.tripstapoker"
+    namespace = "com.sarris.poker"
 
     compileSdkVersion 34
     buildToolsVersion "25.0.3"
     defaultConfig {
-        applicationId "com.tripsta.tripstapoker"
+        applicationId "com.sarris.poker"
         minSdkVersion 21
         targetSdkVersion 34
         versionCode 1

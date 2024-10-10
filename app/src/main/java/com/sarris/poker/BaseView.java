@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-package com.tripsta.tripstapoker;
+package com.sarris.poker;
 
-public interface BasePresenter {
-
-	void start();
+public interface BaseView<T> {
 
 }
