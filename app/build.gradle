@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'kotlin-kapt'
+
 
 repositories {
     google()
@@ -23,10 +26,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.core:core-ktx:1.13.1'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -35,7 +42,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.jakewharton:butterknife:10.2.3'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+    kapt 'com.jakewharton:butterknife-compiler:10.2.3'
     implementation 'com.github.Ozodrukh.CircularReveal:circualreveal:2.1.0'
 
     implementation project(path: ':models')
@@ -44,6 +51,6 @@ dependencies {
     testImplementation("org.mockito:mockito-core:5.14.1")
     //Dagger
     implementation 'com.google.dagger:dagger:2.52'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.52'
+    kapt 'com.google.dagger:dagger-compiler:2.52'
 
 }

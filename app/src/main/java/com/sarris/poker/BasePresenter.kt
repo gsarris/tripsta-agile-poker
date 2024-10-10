@@ -13,11 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.sarris.poker
 
-package com.sarris.poker;
-
-public interface BasePresenter {
-
-	void start();
-
+interface BasePresenter {
+    fun start()
 }
