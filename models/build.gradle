@@ -1,4 +1,4 @@
-apply plugin: 'java'
+apply plugin: 'kotlin'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -6,9 +6,6 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(11)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
-
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
