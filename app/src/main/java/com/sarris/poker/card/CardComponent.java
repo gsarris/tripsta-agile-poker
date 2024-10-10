@@ -1,4 +1,4 @@
-package com.tripsta.tripstapoker.card;
+package com.sarris.poker.card;
 
 import javax.inject.Singleton;
 
@@ -11,5 +11,5 @@ import dagger.Component;
 @Singleton
 @Component(modules = {CardPresenterModule.class})
 public interface CardComponent {
-	void inject(CardActivity cardActivity);
+    void inject(CardActivity cardActivity);
 }
