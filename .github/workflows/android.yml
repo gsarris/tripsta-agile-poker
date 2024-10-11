@@ -25,4 +25,4 @@ jobs:
     - name: Build
       run: ./gradlew assemble
     - name: Test
-      run: ./gradlew assemble
+      run: ./gradlew test
