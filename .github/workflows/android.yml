@@ -26,3 +26,9 @@ jobs:
       run: ./gradlew assemble
     - name: Test
       run: ./gradlew test
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
+      with:
+        files: |
+          app/build/test-results/**/*.xml
