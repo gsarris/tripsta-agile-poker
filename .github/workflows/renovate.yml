@@ -1,0 +1,25 @@
+name: Android CI
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+     - uses: actions/checkout@v4
+     - name: set up JDK 17
+       uses: actions/setup-java@v4
+       with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+
+     - name: Renovate Bot GitHub Action
+       uses: renovatebot/github-action@v40.3.4
+            
