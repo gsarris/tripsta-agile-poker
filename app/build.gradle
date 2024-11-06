@@ -10,7 +10,7 @@ repositories {
 android {
     namespace = "com.sarris.poker"
 
-    compileSdkVersion 34
+    compileSdkVersion 35
     defaultConfig {
         applicationId "com.sarris.poker"
         minSdkVersion 21
