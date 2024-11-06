@@ -10,7 +10,7 @@ repositories {
 android {
     namespace = "com.sarris.poker"
 
-    compileSdkVersion 34
+    compileSdkVersion 35
     defaultConfig {
         applicationId "com.sarris.poker"
         minSdkVersion 21
@@ -37,7 +37,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.core:core-ktx:1.15.0'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
