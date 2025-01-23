@@ -1,0 +1,27 @@
+name: Renovate
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  schedule:
+    - cron: '0 0 * * 0'
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Renovate Bot GitHub Action
+      uses: renovatebot/github-action@v41.0.10
+      with:
+          token: ${{ secrets.RENOVATE_TOKEN }}
+
+      
+permissions:
+  checks: write
+  pull-requests: write
